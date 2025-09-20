@@ -3,7 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import { ConfigProvider } from "antd";
 import { antdTheme } from "@/config/theme";
 import "./globals.css";
-
+import { AntdRegistry } from "@ant-design/nextjs-registry";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -16,7 +16,8 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Design System",
-  description: "Sistema de design baseado em Ant Design com cores e componentes personalizados",
+  description:
+    "Sistema de design baseado em Ant Design com cores e componentes personalizados",
 };
 
 export default function RootLayout({
@@ -26,9 +27,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-BR">
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        <ConfigProvider theme={antdTheme}>{children}</ConfigProvider>
-      </body>
+      <AntdRegistry>
+        <body className={`${geistSans.variable} ${geistMono.variable}`}>
+          <ConfigProvider theme={antdTheme}>{children}</ConfigProvider>
+        </body>
+      </AntdRegistry>
     </html>
   );
 }

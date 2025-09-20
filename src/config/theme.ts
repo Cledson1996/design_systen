@@ -72,7 +72,8 @@ export const designSystemColors = {
   },
 };
 
-const { neutral, primary, secondary, success, error, warning, info } = designSystemColors;
+const { neutral, primary, secondary, success, error, warning, info } =
+  designSystemColors;
 
 export const antdTheme: ThemeConfig = {
   token: {
@@ -111,10 +112,29 @@ export const antdTheme: ThemeConfig = {
   // Ajustes por componente (opcional, mas prático para casar com a paleta)
   components: {
     Button: {
+      // geral
+      borderRadius: 8,
+
+      // === primary (verde) ===
       colorPrimary: primary[600],
       colorPrimaryHover: primary[700],
       colorPrimaryActive: primary[800],
-      borderRadius: 8,
+
+      // === default (neutral) ===
+      defaultBg: neutral[100],
+      defaultColor: neutral[900],
+      defaultHoverBg: neutral[200],
+      defaultActiveBg: neutral[300],
+      defaultBorderColor: "transparent",
+
+      // === ghost ===
+      defaultGhostColor: neutral[900],
+      defaultGhostBorderColor: neutral[300],
+
+      // === destructive (danger) ===
+      colorError: error[600],
+      colorErrorHover: error[600],
+      colorErrorActive: error[600],
     },
     Input: {
       activeBorderColor: primary[600],
