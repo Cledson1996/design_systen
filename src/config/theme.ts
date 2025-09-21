@@ -16,31 +16,29 @@ export const designSystemColors = {
   },
 
   primary: {
-    50: "#ecfdf5",
-    100: "#d1fae5",
-    200: "#a7f3d0",
-    300: "#6ee7b7",
-    400: "#34d399",
-    500: "#10b981",
-    600: "#059669",
-    700: "#047857",
-    800: "#065f46",
-    900: "#064e3b",
-    950: "#022c22",
+    50: "#AAFFBE",
+    100: "#8AF3A3",
+    200: "#6ADD89",
+    300: "#4AC771",
+    400: "#2CBD62",
+    500: "#009C46",
+    600: "#008633",
+    700: "#007122",
+    800: "#005C12",
+    900: "#004706",
   },
 
   secondary: {
-    50: "#eff6ff",
-    100: "#dbeafe",
-    200: "#bfdbfe",
-    300: "#93c5fd",
-    400: "#60a5fa",
-    500: "#3b82f6",
-    600: "#2563eb",
-    700: "#1d4ed8",
-    800: "#1e40af",
-    900: "#1e3a8a",
-    950: "#172554",
+    50: "#C7DDFA",
+    100: "#A1C6F7",
+    200: "#7BAFF4",
+    300: "#5698F1",
+    400: "#3081EE",
+    500: "#136CE2",
+    600: "#105ABC",
+    700: "#0D4897",
+    800: "#093671",
+    900: "#072854",
   },
 
   success: {
@@ -120,18 +118,16 @@ export const antdTheme: ThemeConfig = {
       colorPrimaryHover: primary[700],
       colorPrimaryActive: primary[800],
 
-      // === default (neutral) ===
-      defaultBg: neutral[100],
+      // === default (neutral - cinza claro) ===
+      defaultBg: neutral[200],
       defaultColor: neutral[900],
-      defaultHoverBg: neutral[200],
-      defaultActiveBg: neutral[300],
+      defaultHoverBg: neutral[400],
+      defaultActiveBg: neutral[400],
       defaultBorderColor: "transparent",
+      defaultHoverBorderColor: "transparent",
+      defaultHoverColor: neutral[900],
 
-      // === ghost ===
-      defaultGhostColor: neutral[900],
-      defaultGhostBorderColor: neutral[300],
-
-      // === destructive (danger) ===
+      // === destructive (error - vermelho) ===
       colorError: error[600],
       colorErrorHover: error[600],
       colorErrorActive: error[600],
@@ -162,6 +158,14 @@ export const antdTheme: ThemeConfig = {
     Slider: { colorPrimary: primary[600] },
     Progress: { colorPrimary: primary[600] },
   },
+};
+
+export const colorSecundaryButton = {
+  defaultBg: secondary[700],
+  defaultColor: neutral[50],
+  defaultHoverColor: neutral[50],
+  defaultHoverBg: secondary[800],
+  defaultActiveBg: secondary[800],
 };
 
 export default antdTheme;
