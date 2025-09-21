@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { Button, Space, Typography, Card, ConfigProvider } from "antd";
+import { Button, Space, Typography, Card, ConfigProvider, Table } from "antd";
 import type { SizeType } from "antd/es/config-provider/SizeContext";
 import { colorSecundaryButton, designSystemColors } from "@/config/theme";
 import {
@@ -231,316 +231,123 @@ const BotoesPage = () => {
     }
   };
 
+  const createTableData = (size: string) => {
+    return buttonStates.map((state, index) => {
+      const row: Record<string, React.ReactNode> = {
+        key: `${size}-${index}`,
+        state: state.name,
+      };
+
+      buttonVariants.forEach((variant) => {
+        row[variant.component] = size.includes("Icon")
+          ? renderIconButton(
+              variant.component,
+              state,
+              size.replace("Icon", "").toLowerCase()
+            )
+          : renderButton(variant.component, state, size.toLowerCase());
+      });
+
+      return row;
+    });
+  };
+
+  const tableColumns = [
+    {
+      title: "",
+      dataIndex: "state",
+      key: "state",
+      width: 120,
+    },
+    ...buttonVariants.map((variant) => ({
+      title: variant.name,
+      dataIndex: variant.component,
+      key: variant.component,
+      align: "center" as const,
+      width: 120,
+    })),
+  ];
+
   return (
-    <div
-      style={{
-        padding: "24px",
-        backgroundColor: "#ffffff",
-        minHeight: "100vh",
-      }}
+    <Space
+      direction="vertical"
+      size="large"
+      style={{ width: "100%", padding: "24px" }}
     >
-      <style jsx global>{`
-        .hover-active-demo:hover {
-          transform: translateY(-1px);
-          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-        }
-
-        .matrix-table {
-          background: transparent;
-          border-collapse: separate;
-          border-spacing: 8px;
-          width: 100%;
-        }
-
-        .matrix-header {
-          color: #666666;
-          font-size: 12px;
-          text-align: center;
-          padding: 8px;
-          border-bottom: 1px dashed #ddd;
-        }
-
-        .matrix-row-header {
-          color: #666666;
-          font-size: 12px;
-          text-align: left;
-          padding: 8px;
-          border-right: 1px dashed #ddd;
-          vertical-align: middle;
-        }
-
-        .matrix-cell {
-          text-align: center;
-          padding: 8px;
-          vertical-align: middle;
-        }
-      `}</style>
-
-      <div style={{ marginBottom: "32px" }}>
-        <Title level={1} style={{ color: "#262626", marginBottom: "8px" }}>
-          JusCash Design System
-        </Title>
-        <Text style={{ color: "#666666" }}>
+      <Space direction="vertical" size="small">
+        <Title level={1}>JusCash Design System</Title>
+        <Text type="secondary">
           Componentes de botões com todos os estados e variantes
         </Text>
-      </div>
+      </Space>
 
-      {/* Matriz de Botões de Texto - Tamanho Médio */}
-      <Card
-        style={{
-          marginBottom: "24px",
-          backgroundColor: "#ffffff",
-          border: "1px solid #e5e5e5",
-        }}
-      >
-        <Title level={2} style={{ color: "#262626", marginBottom: "16px" }}>
-          M - Botões de Texto (Tamanho Médio)
-        </Title>
-
-        <table className="matrix-table">
-          <thead>
-            <tr>
-              <th className="matrix-header"></th>
-              {buttonVariants.map((variant) => (
-                <th key={variant.name} className="matrix-header">
-                  {variant.name}
-                </th>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
-            {buttonStates.map((state) => (
-              <tr key={state.name}>
-                <td className="matrix-row-header">{state.name}</td>
-                {buttonVariants.map((variant) => (
-                  <td
-                    key={`${variant.component}-${state.name}`}
-                    className="matrix-cell"
-                  >
-                    {renderButton(variant.component, state)}
-                  </td>
-                ))}
-              </tr>
-            ))}
-          </tbody>
-        </table>
+      <Card title="M - Botões de Texto (Tamanho Médio)">
+        <Table
+          columns={tableColumns}
+          dataSource={createTableData("middle")}
+          pagination={false}
+          showHeader
+          size="small"
+          bordered
+        />
       </Card>
 
-      {/* Matriz de Botões de Texto - Tamanho Grande */}
-      <Card
-        style={{
-          marginBottom: "24px",
-          backgroundColor: "#ffffff",
-          border: "1px solid #e5e5e5",
-        }}
-      >
-        <Title level={2} style={{ color: "#262626", marginBottom: "16px" }}>
-          L - Botões de Texto (Tamanho Grande)
-        </Title>
-
-        <table className="matrix-table">
-          <thead>
-            <tr>
-              <th className="matrix-header"></th>
-              {buttonVariants.map((variant) => (
-                <th key={variant.name} className="matrix-header">
-                  {variant.name}
-                </th>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
-            {buttonStates.map((state) => (
-              <tr key={state.name}>
-                <td className="matrix-row-header">{state.name}</td>
-                {buttonVariants.map((variant) => (
-                  <td
-                    key={`${variant.component}-${state.name}`}
-                    className="matrix-cell"
-                  >
-                    {renderButton(variant.component, state, "large")}
-                  </td>
-                ))}
-              </tr>
-            ))}
-          </tbody>
-        </table>
+      <Card title="L - Botões de Texto (Tamanho Grande)">
+        <Table
+          columns={tableColumns}
+          dataSource={createTableData("large")}
+          pagination={false}
+          showHeader
+          size="small"
+          bordered
+        />
       </Card>
 
-      {/* Matriz de Botões de Texto - Tamanho Pequeno */}
-      <Card
-        style={{
-          marginBottom: "24px",
-          backgroundColor: "#ffffff",
-          border: "1px solid #e5e5e5",
-        }}
-      >
-        <Title level={2} style={{ color: "#262626", marginBottom: "16px" }}>
-          S - Botões de Texto (Tamanho Pequeno)
-        </Title>
-
-        <table className="matrix-table">
-          <thead>
-            <tr>
-              <th className="matrix-header"></th>
-              {buttonVariants.map((variant) => (
-                <th key={variant.name} className="matrix-header">
-                  {variant.name}
-                </th>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
-            {buttonStates.map((state) => (
-              <tr key={state.name}>
-                <td className="matrix-row-header">{state.name}</td>
-                {buttonVariants.map((variant) => (
-                  <td
-                    key={`${variant.component}-${state.name}`}
-                    className="matrix-cell"
-                  >
-                    {renderButton(variant.component, state, "small")}
-                  </td>
-                ))}
-              </tr>
-            ))}
-          </tbody>
-        </table>
+      <Card title="S - Botões de Texto (Tamanho Pequeno)">
+        <Table
+          columns={tableColumns}
+          dataSource={createTableData("small")}
+          pagination={false}
+          showHeader
+          size="small"
+          bordered
+        />
       </Card>
 
-      {/* Matriz de Botões de Ícone - Tamanho Médio */}
-      <Card
-        style={{
-          marginBottom: "24px",
-          backgroundColor: "#ffffff",
-          border: "1px solid #e5e5e5",
-        }}
-      >
-        <Title level={2} style={{ color: "#262626", marginBottom: "16px" }}>
-          M - Botões de Ícone (Tamanho Médio)
-        </Title>
-
-        <table className="matrix-table">
-          <thead>
-            <tr>
-              <th className="matrix-header"></th>
-              {buttonVariants.map((variant) => (
-                <th key={variant.name} className="matrix-header">
-                  {variant.name}
-                </th>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
-            {buttonStates.map((state) => (
-              <tr key={state.name}>
-                <td className="matrix-row-header">{state.name}</td>
-                {buttonVariants.map((variant) => (
-                  <td
-                    key={`${variant.component}-${state.name}`}
-                    className="matrix-cell"
-                  >
-                    {renderIconButton(variant.component, state)}
-                  </td>
-                ))}
-              </tr>
-            ))}
-          </tbody>
-        </table>
+      <Card title="M - Botões de Ícone (Tamanho Médio)">
+        <Table
+          columns={tableColumns}
+          dataSource={createTableData("middleIcon")}
+          pagination={false}
+          showHeader
+          size="small"
+          bordered
+        />
       </Card>
 
-      {/* Matriz de Botões de Ícone - Tamanho Grande */}
-      <Card
-        style={{
-          marginBottom: "24px",
-          backgroundColor: "#ffffff",
-          border: "1px solid #e5e5e5",
-        }}
-      >
-        <Title level={2} style={{ color: "#262626", marginBottom: "16px" }}>
-          L - Botões de Ícone (Tamanho Grande)
-        </Title>
-
-        <table className="matrix-table">
-          <thead>
-            <tr>
-              <th className="matrix-header"></th>
-              {buttonVariants.map((variant) => (
-                <th key={variant.name} className="matrix-header">
-                  {variant.name}
-                </th>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
-            {buttonStates.map((state) => (
-              <tr key={state.name}>
-                <td className="matrix-row-header">{state.name}</td>
-                {buttonVariants.map((variant) => (
-                  <td
-                    key={`${variant.component}-${state.name}`}
-                    className="matrix-cell"
-                  >
-                    {renderIconButton(variant.component, state, "large")}
-                  </td>
-                ))}
-              </tr>
-            ))}
-          </tbody>
-        </table>
+      <Card title="L - Botões de Ícone (Tamanho Grande)">
+        <Table
+          columns={tableColumns}
+          dataSource={createTableData("largeIcon")}
+          pagination={false}
+          showHeader
+          size="small"
+          bordered
+        />
       </Card>
 
-      {/* Matriz de Botões de Ícone - Tamanho Pequeno */}
-      <Card
-        style={{
-          marginBottom: "24px",
-          backgroundColor: "#ffffff",
-          border: "1px solid #e5e5e5",
-        }}
-      >
-        <Title level={2} style={{ color: "#262626", marginBottom: "16px" }}>
-          S - Botões de Ícone (Tamanho Pequeno)
-        </Title>
-
-        <table className="matrix-table">
-          <thead>
-            <tr>
-              <th className="matrix-header"></th>
-              {buttonVariants.map((variant) => (
-                <th key={variant.name} className="matrix-header">
-                  {variant.name}
-                </th>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
-            {buttonStates.map((state) => (
-              <tr key={state.name}>
-                <td className="matrix-row-header">{state.name}</td>
-                {buttonVariants.map((variant) => (
-                  <td
-                    key={`${variant.component}-${state.name}`}
-                    className="matrix-cell"
-                  >
-                    {renderIconButton(variant.component, state, "small")}
-                  </td>
-                ))}
-              </tr>
-            ))}
-          </tbody>
-        </table>
+      <Card title="S - Botões de Ícone (Tamanho Pequeno)">
+        <Table
+          columns={tableColumns}
+          dataSource={createTableData("smallIcon")}
+          pagination={false}
+          showHeader
+          size="small"
+          bordered
+        />
       </Card>
 
-      {/* Exemplos de Uso */}
-      <Card
-        style={{
-          backgroundColor: "#ffffff",
-          border: "1px solid #e5e5e5",
-        }}
-      >
-        <Title level={2} style={{ color: "#262626", marginBottom: "16px" }}>
-          Exemplos de Uso
-        </Title>
+      <Card title="Exemplos de Uso">
         <Space wrap size="middle">
           <Button type="primary" icon={<MailOutlined />}>
             Entrar com o e-mail
@@ -567,7 +374,7 @@ const BotoesPage = () => {
           <Button type="text" icon={<BellOutlined />} />
         </Space>
       </Card>
-    </div>
+    </Space>
   );
 };
 

@@ -112,6 +112,11 @@ export const antdTheme: ThemeConfig = {
     Button: {
       // geral
       borderRadius: 8,
+      // ===  Small ===
+      paddingContentHorizontalSM: 10,
+      paddingContentVerticalSM: 10,
+      controlHeightSM: 32,
+      fontSize: 13,
 
       // === primary (verde) ===
       colorPrimary: primary[600],
@@ -166,6 +171,8 @@ export const colorSecundaryButton = {
   defaultHoverColor: neutral[50],
   defaultHoverBg: secondary[800],
   defaultActiveBg: secondary[800],
+  colorTextDisabled: designSystemColors.neutral[400],
+  colorBgContainerDisabled: designSystemColors.neutral[200],
 };
 
 export default antdTheme;
