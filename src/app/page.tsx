@@ -9,8 +9,9 @@ export default function Home() {
     <div style={{ padding: "24px", maxWidth: "1200px", margin: "0 auto" }}>
       <Title level={1}>Design System</Title>
       <Paragraph>
-        Sistema de design baseado em Ant Design com cores e componentes personalizados. O
-        ConfigProvider foi configurado globalmente com as cores do design system.
+        Sistema de design baseado em Ant Design com cores e componentes
+        personalizados. O ConfigProvider foi configurado globalmente com as
+        cores do design system.
       </Paragraph>
 
       <Row gutter={[16, 16]} style={{ marginTop: "32px" }}>
@@ -60,9 +61,12 @@ export default function Home() {
             <Title level={3}>Título H3</Title>
             <Title level={4}>Título H4</Title>
             <Paragraph>
-              Este é um parágrafo de exemplo usando a tipografia configurada no design system.
+              Este é um parágrafo de exemplo usando a tipografia configurada no
+              design system.
             </Paragraph>
-            <Paragraph type="secondary">Texto secundário com cor mais suave.</Paragraph>
+            <Paragraph type="secondary">
+              Texto secundário com cor mais suave.
+            </Paragraph>
           </Card>
         </Col>
       </Row>
@@ -70,8 +74,11 @@ export default function Home() {
       <Card style={{ marginTop: "24px" }} title="Páginas do Design System">
         <Paragraph>Explore os componentes do design system:</Paragraph>
         <Space wrap>
-          <Link href="/buttons">
+          <Link href="/botoes">
             <Button type="primary">Ver Componentes de Botão</Button>
+          </Link>
+          <Link href="/inputs">
+            <Button type="primary">Ver Componentes de Input</Button>
           </Link>
           <Button disabled>Cores (Em breve)</Button>
           <Button disabled>Tipografia (Em breve)</Button>
@@ -80,10 +87,15 @@ export default function Home() {
       </Card>
 
       <Card style={{ marginTop: "24px" }} title="Próximos Passos">
-        <Paragraph>O ConfigProvider está configurado globalmente. Agora você pode:</Paragraph>
+        <Paragraph>
+          O ConfigProvider está configurado globalmente. Agora você pode:
+        </Paragraph>
         <ul>
           <li>✅ Criar página específica para componentes de botão</li>
-          <li>Criar páginas específicas para demonstrar cada categoria de cores</li>
+          <li>✅ Criar página específica para componentes de input</li>
+          <li>
+            Criar páginas específicas para demonstrar cada categoria de cores
+          </li>
           <li>Adicionar mais componentes personalizados</li>
           <li>Configurar tokens de design mais específicos</li>
           <li>Implementar modo escuro</li>

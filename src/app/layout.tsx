@@ -1,17 +1,14 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Inter } from "next/font/google";
 import { ConfigProvider } from "antd";
 import { antdTheme } from "@/config/theme";
 import "./globals.css";
 import { AntdRegistry } from "@ant-design/nextjs-registry";
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const inter = Inter({
   subsets: ["latin"],
+  display: "swap",
+  variable: "--font-inter",
 });
 
 export const metadata: Metadata = {
@@ -28,7 +25,7 @@ export default function RootLayout({
   return (
     <html lang="pt-BR">
       <AntdRegistry>
-        <body className={`${geistSans.variable} ${geistMono.variable}`}>
+        <body className={inter.variable}>
           <ConfigProvider theme={antdTheme}>{children}</ConfigProvider>
         </body>
       </AntdRegistry>

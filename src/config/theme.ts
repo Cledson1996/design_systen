@@ -103,27 +103,23 @@ export const antdTheme: ThemeConfig = {
 
     // Tipografia / raio – ajuste se quiser
     fontFamily:
-      'Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial',
+      'var(--font-inter), Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial',
     borderRadius: 8,
   },
 
-  // Ajustes por componente (opcional, mas prático para casar com a paleta)
   components: {
     Button: {
-      // geral
       borderRadius: 8,
-      // ===  Small ===
+
       paddingContentHorizontalSM: 10,
       paddingContentVerticalSM: 10,
       controlHeightSM: 32,
       fontSize: 13,
 
-      // === primary (verde) ===
       colorPrimary: primary[600],
       colorPrimaryHover: primary[700],
       colorPrimaryActive: primary[800],
 
-      // === default (neutral - cinza claro) ===
       defaultBg: neutral[200],
       defaultColor: neutral[900],
       defaultHoverBg: neutral[400],
@@ -132,15 +128,48 @@ export const antdTheme: ThemeConfig = {
       defaultHoverBorderColor: "transparent",
       defaultHoverColor: neutral[900],
 
-      // === destructive (error - vermelho) ===
       colorError: error[600],
       colorErrorHover: error[600],
       colorErrorActive: error[600],
     },
     Input: {
-      activeBorderColor: primary[600],
-      hoverBorderColor: primary[600],
-      colorBgContainer: neutral[50],
+      // Cores de borda
+      colorBorder: neutral[300],
+      colorBorderSecondary: neutral[300],
+      activeBorderColor: neutral[300],
+      hoverBorderColor: neutral[300],
+      colorErrorBorder: error[600],
+      colorErrorBorderHover: error[600],
+
+      // Cores de fundo
+      colorBgContainer: "#ffffff",
+      colorBgContainerDisabled: neutral[100],
+
+      // Cores de texto
+      colorText: neutral[900],
+      colorTextPlaceholder: neutral[400],
+      colorTextDisabled: neutral[400],
+
+      // Tamanhos
+      controlHeight: 40, // Regular
+      controlHeightLG: 48, // Large
+      controlHeightSM: 32, // Small
+      controlHeightXS: 24, // Mini
+
+      // Padding horizontal
+      paddingInline: 12,
+      paddingInlineLG: 16,
+      paddingInlineSM: 8,
+
+      // Font size
+      fontSize: 14,
+      fontSizeLG: 16,
+      fontSizeSM: 12,
+
+      // Border radius
+      borderRadius: 8,
+      borderRadiusLG: 8,
+      borderRadiusSM: 6,
     },
     Select: {
       optionSelectedColor: neutral[900],
